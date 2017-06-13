@@ -1,1 +1,114 @@
-{"software":{"name":"stringer","major":null,"minor":1,"release_level":"Alpha","patch":null,"license_name":"mit","license_label":"MIT","license_sourceurl":null,"full_title":"stringer","short_title":"stringer","description":"A self-hosted, anti-social RSS reader.","icon_url":"","home_page_url":"https://github.com/swanson/stringer","support_page_url":"","about":"","language":"ruby","framework":"rails4","deployment_type":"web","web_root_directory":"","first_run_url":"","publisher":"engines","blocking_worker_name":null,"required_memory":256,"recommended_memory":256,"http_protocol":"http_and_https","framework_port_overide":null,"custom_start_script":"","custom_install_script":"#!/bin/bash\r\nrm /home/app/config/database.yml\r\nexport DATABASE_URL=postgres://$dbuser:$dbpasswd@$dbhost/$dbname","custom_post_install_script":"","service_configurations":[{"publisher_namespace":"EnginesSystem","type_path":"database/sql/pgsql","variables":{"database_host":"_Engines_System(pgsql_host)","full_access":"0","database_name":"_Engines_Builder(engine_name)","dbusername":"_Engines_Builder(engine_name)","db_flavor":"pgsql","encoding":"utf8","collation":"C","dbpassword":"_Engines_System(random(10))","rails_flavor":"postgresql"}},{"publisher_namespace":"EnginesSystem","type_path":"cron","variables":{"action_type":"command","title":"fetch_feeds","cron_job":"*/10 * * * *  bundle exec rake fetch_feeds"}}],"persistent_directories":[],"replacement_strings":[],"persistent_files":[],"installed_packages":[{"name":"stringer","source_url":"https://github.com/swanson/stringer","destination":"./","extraction_command":"git","path_to_extracted":"stringer"}],"system_packages":[],"workers":[],"ports":[],"external_repositories":[],"rake_tasks":[{"action":"db:migrate","created_at":"2016-03-10T00:24:25.000Z","updated_at":"2016-03-10T00:24:25.000Z","always_run":true}],"template_files":[{"title":"app/config/mail.yml","path":"","content":"production:\r\n default_url_options:\r\n  host: _Engines_Builder(fqdn)\r\n email_delivery:\r\n  delivery_method: :smtp\r\n  smtp_settings:\r\n   address: _Engines_System(smtp_host)\r\n   port: 25\r\n   domain: _Engines_System(default_domain)\r\n   enable_starttls_auto : false\r\n   attachments_storage_path: /tmp"}],"file_write_permissions":[],"custom_php_inis":[],"apache_htaccess_files":[],"apache_httpd_configurations":[],"modules":[],"variables":[],"component_sources":[],"component_path":"","extract_components":false,"installation_report_template":"","continuous_deployment":false,"database_seed_file":"#EnginesSystem/database/sql/pgsql/_Engines_Builder(engine_name)\r\nINSERT INTO users VALUES (1, '', 'now', 'now', false, '');","actionators":{}}}
+{
+  "schema": {
+    "type": "app_blueprint",
+    "version": {
+      "major": 1,
+      "minor": 0
+    },
+    "origin": "Engines Developer Studio 0.2"
+  },
+  "metadata": {
+    "blueprint": {
+      "version": {
+        "major": 0,
+        "minor": 1,
+        "level": "alpha",
+        "patch": 0
+      }
+    },
+    "software": {
+      "display": {
+        "title": "stringer",
+        "label": "stringer",
+        "description": "A self-hosted, anti-social RSS reader.",
+        "url": "https://github.com/swanson/stringer"
+      },
+      "license": {
+        "label": "MIT"
+      }
+    },
+    "timestamp": "2017-06-13T08:10:55+00:00"
+  },
+  "software": {
+    "base": {
+      "name": "stringer",
+      "framework": "rails4",
+      "deployment_type": "web",
+      "http_protocol": "http_and_https",
+      "memory": {
+        "required": 256,
+        "recommended": 256
+      }
+    },
+    "scripts": {
+      "start": {
+        "language": "sh"
+      },
+      "install": {
+        "language": "sh",
+        "content": "#!/bin/bash\r\nrm /home/app/config/database.yml\r\nexport DATABASE_URL=postgres://$dbuser:$dbpasswd@$dbhost/$dbname"
+      },
+      "post_install": {
+        "language": "sh"
+      },
+      "shutdown": {
+        "language": "sh"
+      }
+    },
+    "installed_packages": [
+      {
+        "name": "stringer",
+        "source_url": "https://github.com/swanson/stringer",
+        "destination": "./",
+        "extraction_command": "git",
+        "path_to_extracted": "stringer"
+      }
+    ],
+    "service_configurations": [
+      {
+        "publisher_namespace": "EnginesSystem",
+        "type_path": "database/sql/pgsql",
+        "variables": {
+          "database_host": "_Engines_System(pgsql_host)",
+          "full_access": "0",
+          "database_name": "_Engines_Builder(engine_name)",
+          "dbusername": "_Engines_Builder(engine_name)",
+          "db_flavor": "pgsql",
+          "encoding": "utf8",
+          "collation": "C",
+          "dbpassword": "_Engines_System(random(10))",
+          "rails_flavor": "postgresql"
+        }
+      },
+      {
+        "publisher_namespace": "EnginesSystem",
+        "type_path": "cron",
+        "variables": {
+          "action_type": "command",
+          "cron_job": "bundle exec rake fetch_feeds",
+          "title": "fetch_feeds",
+          "when": "*/10 * * * * "
+        }
+      }
+    ],
+    "template_files": [
+      {
+        "path": "config/mailer.yml",
+        "language": "text",
+        "content": "production:\r\n default_url_options:\r\n  host: _Engines_Builder(fqdn)\r\n email_delivery:\r\n  delivery_method: :smtp\r\n  smtp_settings:\r\n   address: _Engines_System(smtp_host)\r\n   port: 25\r\n   domain: _Engines_System(default_domain)\r\n   enable_starttls_auto : false\r\n   attachments_storage_path: /tmp"
+      }
+    ],
+    "database_seed": {
+      "language": "text",
+      "content": "#EnginesSystem/database/sql/pgsql/_Engines_Builder(engine_name)\r\nINSERT INTO users VALUES (1, '', 'now', 'now', false, '');"
+    },
+    "framework_specific": {
+      "rake_tasks": [
+        {
+          "action": "db:migrate",
+          "always_run": true
+        }
+      ]
+    }
+  }
+}
